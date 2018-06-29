@@ -1,0 +1,30 @@
+<link rel="import" href="../polymer/polymer-element.html">
+<link rel="import" href="../ac-view/ac-view.html">
+<link rel="import" href="./clarinet-keys.html">
+<dom-module id="ac-clarinet">
+    <template>
+        <style>
+        </style>
+        <clarinet-keys acLedGroup name='clarinet'>
+        </clarinet-keys>
+    </template>
+    <script>
+        class ACClarinet extends ACView {
+            static get is() { return 'ac-clarinet'; }
+            static get properties() {return {}}
+            constructor() {
+                super();
+            }
+            ___acV_handleMIDIEvent (e) {
+                this.shadowRoot.querySelector('clarinet-keys').___acV_onMIDIEvent(e);
+            }
+            ready() {
+                super.ready() ;
+                this.___acV_setName('clarinet') ; 
+                this.___acV_setDefaultReverb(30);
+                this.___acV_setDefaultViewPitch(82) ; 
+            }
+        }
+        customElements.define('ac-clarinet', ACClarinet);
+    </script>
+</dom-module>
