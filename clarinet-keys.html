@@ -53,8 +53,8 @@
             }
             [notes]{
                 position: absolute;
-                margin-left:-75px ;
-                margin-top:-40px;
+                margin-left:-65px ;
+                margin-top:-80px;
             }
             [horizontal-keys]{
                 transform: rotate(15deg) ; 
@@ -67,10 +67,16 @@
             [horizontal-keys]  *{
                 margin: 0 ;
             }
+            .rotated{
+                transform: scale(-1,1) ; 
+            }
+            .rotated [notes]{
+                transform: scale(-1,1) ; 
+            }
         </style>
         <view-audio channel='0'></view-audio>
         <div wrapper style='margin-left:14px;'>
-            <div clarinet-wrapper>
+            <div class$="{{_computeRotation(___acV_rotation)}}" clarinet-wrapper>
                 <div clarinet>
                     <div col style='margin-right:-5px;'>
                         <div notes>
@@ -161,10 +167,17 @@
                     res.push(1) ;
                 return res ;
             }
+            _computeRotation(rotation) {
+                if (rotation )
+                    return "rotated";
+                return "";
+            }
             ready() {
                 super.ready() ;
                 this.midiNoteToGUI = [] ;
+                this.___acV_displayTransposition = true ;
                 
+
                 this.midiNoteToGUI[52] = [2,12,13,14,15,16,17,22]; // E3
                 this.midiNoteToGUI[53] = [2,10,12,13,14,15,16,17]; //  F3
                 this.midiNoteToGUI[54] = [2,12,13,14,15,16,17,21]; // F#3
